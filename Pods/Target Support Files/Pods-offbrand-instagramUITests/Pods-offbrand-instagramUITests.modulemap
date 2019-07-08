@@ -1,0 +1,6 @@
+framework module Pods_offbrand_instagramUITests {
+  umbrella header "Pods-offbrand-instagramUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
