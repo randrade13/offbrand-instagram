@@ -19,6 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    // Code to initialize Parse
     ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
         
         configuration.applicationId = @"codepathInstagram";
@@ -26,6 +27,8 @@
     }];
     
     [Parse initializeWithConfiguration:config];
+    
+    /*
     PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
     gameScore[@"score"] = @1337;
     gameScore[@"playerName"] = @"Sean Plott";
@@ -37,7 +40,7 @@
             NSLog(@"Error: %@", error.description);
         }
     }];
-    
+    */
     
     return YES;
 }

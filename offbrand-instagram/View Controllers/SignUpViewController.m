@@ -67,24 +67,20 @@
             NSLog(@"User registered successfully");
             
             // present signUpSuccessAlert
-            [self presentViewController:signUpSuccessAlert animated:YES completion:^(void){
-                
-                // return to login screen
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }];
+            [self presentViewController:signUpSuccessAlert animated:YES completion:nil];
+
         };
     }];
 }
 - (IBAction)didTapSignUp:(id)sender {
-    
     // register user with current text field info
     [self registerUser];
-    
-    
 }
+
 - (IBAction)didTapLogin:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (IBAction)didTapSignUpView:(id)sender {
     // Close keyboard
     [self.view endEditing:YES];

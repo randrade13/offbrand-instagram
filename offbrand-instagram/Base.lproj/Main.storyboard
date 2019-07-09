@@ -13,7 +13,7 @@
         <!--Login View Controller-->
         <scene sceneID="Io7-xz-DXI">
             <objects>
-                <viewController id="m5S-b5-JZ7" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="m5S-b5-JZ7" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8yI-1c-LBE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,7 +76,7 @@
                         <outlet property="signUpButton" destination="TER-Gh-ekb" id="hk4-kL-2YR"/>
                         <outlet property="usernameField" destination="v5D-Ia-1eC" id="XSU-RR-Uak"/>
                         <segue destination="6PO-kn-Eyb" kind="modal" identifier="signUpSegue" id="U96-YM-Qlt"/>
-                        <segue destination="rH8-hD-lCu" kind="presentation" identifier="timelineSegue" id="nV2-Fh-8Bw"/>
+                        <segue destination="qBV-d0-UHi" kind="presentation" identifier="timelineSegue" id="nV2-Fh-8Bw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rHy-St-vCL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -91,7 +91,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="9WO-MJ-R3p">
             <objects>
-                <viewController id="6PO-kn-Eyb" customClass="SignUpViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" id="6PO-kn-Eyb" customClass="SignUpViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C9Q-Vt-lsE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -169,20 +169,45 @@
             </objects>
             <point key="canvasLocation" x="729" y="-230"/>
         </scene>
-        <!--Timeline View Controller-->
+        <!--TimelineViewController-->
         <scene sceneID="72d-OX-JRp">
             <objects>
-                <viewController id="rH8-hD-lCu" customClass="TimelineViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TimelineViewController" title="TimelineViewController" id="rH8-hD-lCu" customClass="TimelineViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cmm-Dv-PbO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="r2T-05-zDw"/>
                     </view>
+                    <navigationItem key="navigationItem" id="iv2-mb-OZD">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="BBB-jF-gpM">
+                            <connections>
+                                <action selector="didTapSignOut:" destination="rH8-hD-lCu" id="rHJ-Io-S8m"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLI-GL-gnn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="729" y="602"/>
+            <point key="canvasLocation" x="1498" y="518"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fCz-9V-Fs1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qBV-d0-UHi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QfG-92-0da">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rH8-hD-lCu" kind="relationship" relationship="rootViewController" id="vJE-4l-Pro"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aY9-hu-oCb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="729" y="519"/>
         </scene>
     </scenes>
     <resources>
