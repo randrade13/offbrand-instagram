@@ -44,14 +44,8 @@
     
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
-            NSLog(@"User log in failed: %@", error.localizedDescription);
-            // present loginNotSuccessfulAlert
             [self presentViewController:loginNotSuccessfulAlert animated:YES completion:nil];
-            
         } else {
-            NSLog(@"User logged in successfully");
-            
-            // Segue to timeline
             [self performSegueWithIdentifier:@"timelineSegue" sender:nil];
         }
     }];
@@ -64,7 +58,6 @@
     [self performSegueWithIdentifier:@"signUpSegue" sender:nil];
 }
 - (IBAction)didTapLoginView:(id)sender {
-    // Close keyboard edit
     [self.view endEditing:YES];
 }
 
