@@ -9,6 +9,7 @@
 #import "ComposeViewController.h"
 #import "UITextView+Placeholder.h"
 #import "TimelineViewController.h"
+#import "MBProgressHUD.h"
 
 @interface ComposeViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
 
@@ -81,7 +82,9 @@ static NSString *const textViewPlaceholderText = @"Write a description for your 
 }
 
 - (IBAction)didTapShare:(id)sender {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [Post postUserImage:self.editedImage withCaption:self.textView.text withCompletion:nil];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self dismissViewControllerAnimated:true completion:^{
         [self.delegate didPost];
     }];

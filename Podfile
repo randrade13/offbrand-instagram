@@ -11,6 +11,7 @@ target 'offbrand-instagram' do
   pod 'Parse/UI'
   pod 'AFNetworking'
   pod 'DateTools'
+  pod 'MBProgressHUD', '~> 1.0.0'
 
 
   target 'offbrand-instagramTests' do
