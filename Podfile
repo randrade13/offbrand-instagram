@@ -8,6 +8,9 @@ target 'offbrand-instagram' do
   # Pods for offbrand-instagram
   pod 'Parse'
   pod 'UITextView+Placeholder'
+  pod 'Parse/UI'
+  pod 'AFNetworking'
+
 
   target 'offbrand-instagramTests' do
     inherit! :search_paths

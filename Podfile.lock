@@ -1,26 +1,47 @@
 PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
   - Bolts/Tasks (1.9.0)
   - Parse (1.17.2):
     - Parse/Core (= 1.17.2)
   - Parse/Core (1.17.2):
     - Bolts/Tasks (~> 1.9)
+  - Parse/UI (1.17.2):
+    - Parse/Core
   - "UITextView+Placeholder (1.2.1)"
 
 DEPENDENCIES:
+  - AFNetworking
   - Parse
+  - Parse/UI
   - "UITextView+Placeholder"
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AFNetworking
     - Bolts
     - Parse
     - "UITextView+Placeholder"
 
 SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Parse: 3b31a3dd1777b07ee7f0caee32fafbff544483a5
   "UITextView+Placeholder": 0c3efd97f37ea64bde7f34cc6e90fe02e87b3909
 
-PODFILE CHECKSUM: fa22e26bb5e94cd40b72fa47c27fa37c99b75820
+PODFILE CHECKSUM: eb03c02ba2761b760d3ca64f9fa3156ba2aa49cf
 
 COCOAPODS: 1.7.2

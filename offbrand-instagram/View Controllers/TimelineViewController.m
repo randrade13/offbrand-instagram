@@ -10,8 +10,16 @@
 #import "Parse.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "Post.h"
+#import "instaPostCell.h"
+#import "UIImageView+AFNetworking.h"
+#import "ComposeViewController.h"
 
-@interface TimelineViewController ()
+@interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate>
+
+@property NSArray *postArray;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -19,8 +27,39 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
+    [self refreshData];
+    
 }
+-(void)refreshData{
+    
+    // construct PFQuery
+    PFQuery *postQuery = [Post query];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery includeKey:@"author"];
+    postQuery.limit = 20;
+    
+    // fetch data asynchronously
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            self.postArray = posts;
+            [self.tableView reloadData];
+            // do something with the data fetched
+        }
+        else {
+            // handle error
+        }
+        [self.refreshControl endRefreshing];
+    }];
+}
+
 - (IBAction)didTapSignOut:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         // PFUser.current() will now be nil
@@ -31,18 +70,58 @@
         LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
         appDelegate.window.rootViewController = loginViewController;
         
-        NSLog(@"User logged out successfully");
+        // NSLog(@"User logged out successfully");
     }];
 }
 
-/*
+- (NSInteger)tableView:(UITableView *)tableView  numberOfRowsInSection:(NSInteger)section {
+    return self.postArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    instaPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"instaPostCell" forIndexPath:indexPath];
+    
+    Post *post = self.postArray[indexPath.row];
+    cell.post = post;
+    
+    cell.authorUserNameHeader.text = post.author.username;
+    cell.authorUserNameBody.text = post.author.username;
+    cell.numberOfLikes.text = [NSString stringWithFormat:@"%@", post.likeCount];
+    cell.postText.text = post.caption;
+    
+    NSString *post_image_address = post.image.url;
+    NSLog(@"%@", post_image_address);
+    NSURL *postImageURL = [NSURL URLWithString:post_image_address];
+    
+    cell.postedImage.image = nil;
+    [cell.postedImage setImageWithURL:postImageURL];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    // cell.authorProfileImage =
+    
+    return cell;
+}
+
+- (void)didPost{
+    [self refreshData];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+     UINavigationController *navigationController = [segue destinationViewController];
+    
+    if ([segue.identifier  isEqual: @"compose_segue"]){
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self;
+    }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end

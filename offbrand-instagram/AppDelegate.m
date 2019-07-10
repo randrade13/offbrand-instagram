@@ -22,8 +22,8 @@
     // Code to initialize Parse
     ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
         
-        configuration.applicationId = @"codepathInstagram";
-        configuration.server = @"http://codepathfbinstagram.herokuapp.com/parse";
+        configuration.applicationId = @"offbrand-instagram";
+        configuration.server = @"https://offbrand-instagram.herokuapp.com/parse";
     }];
     
     [Parse initializeWithConfiguration:config];

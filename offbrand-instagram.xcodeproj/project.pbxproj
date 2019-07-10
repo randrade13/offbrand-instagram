@@ -70,6 +70,7 @@
 		4AFA92B822D53CE900092432 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		4AFA92BA22D555DE00092432 /* instaPostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = instaPostCell.h; sourceTree = "<group>"; };
 		4AFA92BB22D555DE00092432 /* instaPostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = instaPostCell.m; sourceTree = "<group>"; };
+		4AFA92BD22D5A25C00092432 /* Parse */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Parse; path = Pods/Parse; sourceTree = "<group>"; };
 		4B70D44A594CA31B31497B30 /* Pods-offbrand-instagramTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-offbrand-instagramTests.debug.xcconfig"; path = "Target Support Files/Pods-offbrand-instagramTests/Pods-offbrand-instagramTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7BCBB9617AD1B2CF690ED25A /* Pods-offbrand-instagramUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-offbrand-instagramUITests.release.xcconfig"; path = "Target Support Files/Pods-offbrand-instagramUITests/Pods-offbrand-instagramUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9427D19B328AF6F26B086EDC /* Pods-offbrand-instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-offbrand-instagram.release.xcconfig"; path = "Target Support Files/Pods-offbrand-instagram/Pods-offbrand-instagram.release.xcconfig"; sourceTree = "<group>"; };
@@ -214,6 +215,7 @@
 		DFF28804B5B0DDD3892FA307 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4AFA92BD22D5A25C00092432 /* Parse */,
 				E3B69CB3BB39859A725A064B /* libPods-offbrand-instagram.a */,
 				2E2F0F77A58DD5DBE80EA4BE /* libPods-offbrand-instagramTests.a */,
 				FAA56A25E2225783775BF541 /* libPods-offbrand-instagramUITests.a */,
@@ -540,6 +542,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -599,6 +602,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

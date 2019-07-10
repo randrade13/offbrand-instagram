@@ -177,12 +177,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3gY-iC-gco">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="600" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3gY-iC-gco">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="577" id="2RH-Up-IOn" customClass="instaPostCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="instaPostCell" rowHeight="577" id="2RH-Up-IOn" customClass="instaPostCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="577"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2RH-Up-IOn" id="uKC-3Y-zjK">
@@ -235,8 +235,25 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chV-1K-Y7y">
+                                                    <rect key="frame" x="78" y="475" width="32" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="authorProfileImage" destination="4Od-1B-cb7" id="4IF-uq-FrL"/>
+                                            <outlet property="authorUserNameBody" destination="PuN-vz-CfZ" id="0wn-iy-P1f"/>
+                                            <outlet property="authorUserNameHeader" destination="ZAH-Qd-brS" id="PbF-TV-Udg"/>
+                                            <outlet property="commentButton" destination="Ikv-Ow-YOF" id="Wck-qg-akF"/>
+                                            <outlet property="likeButton" destination="EkX-gj-upT" id="v4S-jW-DDY"/>
+                                            <outlet property="numberOfLikes" destination="DYg-68-WYz" id="mUq-Sd-lR0"/>
+                                            <outlet property="postText" destination="rBB-EK-ewJ" id="MUP-lw-wnk"/>
+                                            <outlet property="postedImage" destination="0vj-dv-wlw" id="iav-g7-EHK"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -252,10 +269,13 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="insta_camera_btn" id="81w-SG-MUj">
                             <connections>
-                                <segue destination="yeA-OI-939" kind="presentation" id="D3y-my-xgu"/>
+                                <segue destination="yeA-OI-939" kind="presentation" identifier="compose_segue" id="D3y-my-xgu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="3gY-iC-gco" id="cXt-5v-LIR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLI-GL-gnn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

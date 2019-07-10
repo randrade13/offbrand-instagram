@@ -14,7 +14,13 @@
     [super awakeFromNib];
     // Initialization code
 }
-
+/*
+- (void)setPost:(Post *)post {
+    _post = post;
+    self.photoImageView.file = post[@"image"];
+    [self.photoImageView loadInBackground];
+}
+*/
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

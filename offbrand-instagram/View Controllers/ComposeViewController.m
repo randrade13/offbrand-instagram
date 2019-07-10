@@ -8,7 +8,7 @@
 
 #import "ComposeViewController.h"
 #import "UITextView+Placeholder.h"
-#import "Post.h"
+#import "TimelineViewController.h"
 
 @interface ComposeViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
 
@@ -82,12 +82,12 @@ static NSString *const textViewPlaceholderText = @"Write a description for your 
 
 - (IBAction)didTapShare:(id)sender {
     [Post postUserImage:self.editedImage withCaption:self.textView.text withCompletion:nil];
-    [self dismissViewControllerAnimated:true completion:nil];
-    
+    [self dismissViewControllerAnimated:true completion:^{
+        [self.delegate didPost];
+    }];
 }
 
 - (IBAction)didTapPostView:(id)sender {
-    
     [self.view endEditing:YES];
 }
 
