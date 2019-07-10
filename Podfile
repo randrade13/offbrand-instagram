@@ -10,6 +10,7 @@ target 'offbrand-instagram' do
   pod 'UITextView+Placeholder'
   pod 'Parse/UI'
   pod 'AFNetworking'
+  pod 'DateTools'
 
 
   target 'offbrand-instagramTests' do

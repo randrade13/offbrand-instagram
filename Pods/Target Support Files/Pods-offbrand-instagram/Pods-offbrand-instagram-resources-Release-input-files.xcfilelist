@@ -1,3 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-offbrand-instagram/Pods-offbrand-instagram-resources.sh
+${PODS_ROOT}/DateTools/DateTools/DateTools/DateTools.bundle
 ${PODS_CONFIGURATION_BUILD_DIR}/Parse/Parse.bundle
 ${PODS_CONFIGURATION_BUILD_DIR}/Parse/ParseUI.bundle

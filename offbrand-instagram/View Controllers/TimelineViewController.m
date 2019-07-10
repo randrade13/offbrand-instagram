@@ -14,6 +14,8 @@
 #import "instaPostCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
+#import "postDetailsViewController.h"
+#import "DateTools.h"
 
 @interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate>
 
@@ -85,10 +87,15 @@
     Post *post = self.postArray[indexPath.row];
     cell.post = post;
     
+    NSString *formatted_date = post.createdAt.shortTimeAgoSinceNow;
+    cell.datePosted.text = formatted_date;
+    
     cell.authorUserNameHeader.text = post.author.username;
     cell.authorUserNameBody.text = post.author.username;
     cell.numberOfLikes.text = [NSString stringWithFormat:@"%@", post.likeCount];
     cell.postText.text = post.caption;
+    
+    
     
     NSString *post_image_address = post.image.url;
     NSLog(@"%@", post_image_address);
@@ -115,12 +122,18 @@
     
      UINavigationController *navigationController = [segue destinationViewController];
     
-    if ([segue.identifier  isEqual: @"compose_segue"]){
+    if ([segue.identifier  isEqual: @"postDetailSegue"]){
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        Post *post = self.postArray[indexPath.row];
+        
+        postDetailsViewController *postDetailsViewController = [segue destinationViewController];
+        postDetailsViewController.post = post;
+        
+    } else if([segue.identifier  isEqual: @"composeSegue"]){
         ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
         composeController.delegate = self;
     }
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
 
 
