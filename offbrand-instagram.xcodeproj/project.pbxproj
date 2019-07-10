@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4AFA927522D3F70100092432 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFA927422D3F70100092432 /* AppDelegate.m */; };
 		4AFA927B22D3F70100092432 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AFA927922D3F70100092432 /* Main.storyboard */; };
-		4AFA927D22D3F70200092432 /* commentButton.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AFA927C22D3F70200092432 /* commentButton.xcassets */; };
+		4AFA927D22D3F70200092432 /* instagramLogo.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AFA927C22D3F70200092432 /* instagramLogo.xcassets */; };
 		4AFA928022D3F70200092432 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AFA927E22D3F70200092432 /* LaunchScreen.storyboard */; };
 		4AFA928322D3F70200092432 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFA928222D3F70200092432 /* main.m */; };
 		4AFA928D22D3F70200092432 /* offbrand_instagramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFA928C22D3F70200092432 /* offbrand_instagramTests.m */; };
@@ -49,7 +49,7 @@
 		4AFA927322D3F70100092432 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4AFA927422D3F70100092432 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4AFA927A22D3F70100092432 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4AFA927C22D3F70200092432 /* commentButton.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = commentButton.xcassets; sourceTree = "<group>"; };
+		4AFA927C22D3F70200092432 /* instagramLogo.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = instagramLogo.xcassets; sourceTree = "<group>"; };
 		4AFA927F22D3F70200092432 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4AFA928122D3F70200092432 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AFA928222D3F70200092432 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 				4AFA927322D3F70100092432 /* AppDelegate.h */,
 				4AFA927422D3F70100092432 /* AppDelegate.m */,
 				4AFA927922D3F70100092432 /* Main.storyboard */,
-				4AFA927C22D3F70200092432 /* commentButton.xcassets */,
+				4AFA927C22D3F70200092432 /* instagramLogo.xcassets */,
 				4AFA927E22D3F70200092432 /* LaunchScreen.storyboard */,
 				4AFA928122D3F70200092432 /* Info.plist */,
 				4AFA928222D3F70200092432 /* main.m */,
@@ -336,7 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AFA928022D3F70200092432 /* LaunchScreen.storyboard in Resources */,
-				4AFA927D22D3F70200092432 /* commentButton.xcassets in Resources */,
+				4AFA927D22D3F70200092432 /* instagramLogo.xcassets in Resources */,
 				4AFA927B22D3F70100092432 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
