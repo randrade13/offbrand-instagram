@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *authorUserName;
 @property (weak, nonatomic) IBOutlet UILabel *postText;
 @property (weak, nonatomic) IBOutlet UILabel *datePosted;
+@property (weak, nonatomic) IBOutlet UILabel *numberOfLikes;
 
 @end
 
