@@ -101,10 +101,14 @@
         cell.likeButton.selected = NO;
     }
     
+    PFFileObject *authorProfilePicture = post.author[@"profileImage"];
+    NSURL *authorProfilePictureURL = [NSURL URLWithString:authorProfilePicture.url];
+    cell.authorProfileImage.image = nil;
+    [cell.authorProfileImage setImageWithURL:authorProfilePictureURL];
     
-    NSString *post_image_address = post.image.url;
+    NSString *postImageAddress = post.image.url;
     // NSLog(@"%@", post_image_address);
-    NSURL *postImageURL = [NSURL URLWithString:post_image_address];
+    NSURL *postImageURL = [NSURL URLWithString:postImageAddress];
     
     cell.postedImage.image = nil;
     [cell.postedImage setImageWithURL:postImageURL];
@@ -138,6 +142,8 @@
     } else if([segue.identifier  isEqual: @"composeSegue"]){
         ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
         composeController.delegate = self;
+    } else if([segue.identifier isEqual:@"postUserProfileSegue"]){
+        
     }
 }
 

@@ -74,7 +74,6 @@ static NSString *const textViewPlaceholderText = @"Write a description for your 
     }
     
     [self presentViewController:imagePickerVC animated:YES completion:nil];
-    NSLog(@"reached end");
 }
 
 - (IBAction)didTapCancel:(id)sender {

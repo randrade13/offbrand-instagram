@@ -14,10 +14,13 @@
 #import "Parse.h"
 #import "AppDelegate.h"
 
-@interface ProfileViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ProfileViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property NSArray *userPostArray;
 @property (weak, nonatomic) IBOutlet UILabel *userProfileName;
+@property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
+@property (strong, nonatomic) UIImage *originalImage;
+@property (strong, nonatomic) UIImage *editedImage;
 
 @end
 
@@ -26,8 +29,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self loadUserProfilePicture];
+    
     NSString *userName = PFUser.currentUser.username;
     self.userProfileName.text = userName;
+    
+    // NSURL *profileImageUrl = [PFUser currentUser][@"profileImage"].url;
     
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
     
@@ -43,6 +50,14 @@
     
     [self refreshData];
     // Do any additional setup after loading the view.
+}
+
+-(void)loadUserProfilePicture{
+    PFFileObject *PFObjectProfileImage = [PFUser currentUser][@"profileImage"];
+    
+    NSURL *profileImageURL = [NSURL URLWithString:PFObjectProfileImage.url];
+    self.profilePicture.image = nil;
+    [self.profilePicture setImageWithURL:profileImageURL];
 }
 
 -(void)refreshData{
@@ -85,6 +100,49 @@
     return self.userPostArray.count;
 }
 
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    
+    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizeImageView.image = image;
+    
+    UIGraphicsBeginImageContext(size);
+    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    
+    // Get the image captured by the UIImagePickerController
+    self.originalImage = info[UIImagePickerControllerOriginalImage];
+    self.editedImage = [self resizeImage:self.originalImage withSize:CGSizeMake(400, 400)];
+    
+    // Do something with the images (based on your use case)
+    [self.profilePicture setImage:self.editedImage];
+    [PFUser currentUser][@"profileImage"] = [Post getPFFileFromImage:self.editedImage];
+    [[PFUser currentUser] saveInBackground];
+    // Dismiss UIImagePickerController to go back to your original view controller
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)didTapChangeProfilePicture:(id)sender {
+    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+    imagePickerVC.delegate = self;
+    imagePickerVC.allowsEditing = YES;
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else {
+        NSLog(@"Camera 🚫 available so we will use photo library instead");
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
+}
 
 #pragma mark - Navigation
 

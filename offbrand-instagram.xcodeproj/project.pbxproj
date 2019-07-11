@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4A944D2F22D6AB490065782C /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A944D2E22D6AB490065782C /* ProfileViewController.m */; };
 		4A944D3222D6AB850065782C /* instaCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A944D3122D6AB850065782C /* instaCollectionCell.m */; };
+		4A944D3522D7F1D90065782C /* postAuthorProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A944D3422D7F1D90065782C /* postAuthorProfileViewController.m */; };
 		4AFA927522D3F70100092432 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFA927422D3F70100092432 /* AppDelegate.m */; };
 		4AFA927B22D3F70100092432 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AFA927922D3F70100092432 /* Main.storyboard */; };
 		4AFA927D22D3F70200092432 /* likeButoonSelected.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AFA927C22D3F70200092432 /* likeButoonSelected.xcassets */; };
@@ -51,6 +52,8 @@
 		4A944D2E22D6AB490065782C /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		4A944D3022D6AB850065782C /* instaCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = instaCollectionCell.h; sourceTree = "<group>"; };
 		4A944D3122D6AB850065782C /* instaCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = instaCollectionCell.m; sourceTree = "<group>"; };
+		4A944D3322D7F1D90065782C /* postAuthorProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = postAuthorProfileViewController.h; sourceTree = "<group>"; };
+		4A944D3422D7F1D90065782C /* postAuthorProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = postAuthorProfileViewController.m; sourceTree = "<group>"; };
 		4AFA927022D3F70100092432 /* offbrand-instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "offbrand-instagram.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AFA927322D3F70100092432 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4AFA927422D3F70100092432 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -190,6 +193,8 @@
 				4AFA92C022D5B2CC00092432 /* postDetailsViewController.m */,
 				4A944D2D22D6AB490065782C /* ProfileViewController.h */,
 				4A944D2E22D6AB490065782C /* ProfileViewController.m */,
+				4A944D3322D7F1D90065782C /* postAuthorProfileViewController.h */,
+				4A944D3422D7F1D90065782C /* postAuthorProfileViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -461,6 +466,7 @@
 				4AFA928322D3F70200092432 /* main.m in Sources */,
 				4AFA927522D3F70100092432 /* AppDelegate.m in Sources */,
 				4AFA92AD22D40C1600092432 /* SignUpViewController.m in Sources */,
+				4A944D3522D7F1D90065782C /* postAuthorProfileViewController.m in Sources */,
 				4AFA92B322D4F2B300092432 /* ComposeViewController.m in Sources */,
 				4A944D2F22D6AB490065782C /* ProfileViewController.m in Sources */,
 				4A944D3222D6AB850065782C /* instaCollectionCell.m in Sources */,
