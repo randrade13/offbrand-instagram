@@ -98,7 +98,7 @@
     
     
     NSString *post_image_address = post.image.url;
-    NSLog(@"%@", post_image_address);
+    // NSLog(@"%@", post_image_address);
     NSURL *postImageURL = [NSURL URLWithString:post_image_address];
     
     cell.postedImage.image = nil;
