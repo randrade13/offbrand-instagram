@@ -86,7 +86,7 @@
     
     Post *post = self.postArray[indexPath.row];
     cell.post = post;
-    
+
     NSString *formatted_date = post.createdAt.shortTimeAgoSinceNow;
     cell.datePosted.text = formatted_date;
     
@@ -95,6 +95,11 @@
     cell.numberOfLikes.text = [NSString stringWithFormat:@"%@", post.likeCount];
     cell.postText.text = post.caption;
     
+    if ([cell.post.usersWhoLiked containsObject:[PFUser currentUser].objectId]){
+        cell.likeButton.selected = YES;
+    } else {
+        cell.likeButton.selected = NO;
+    }
     
     
     NSString *post_image_address = post.image.url;

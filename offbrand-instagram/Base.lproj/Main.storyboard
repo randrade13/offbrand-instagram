@@ -259,21 +259,25 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0vj-dv-wlw">
-                                                    <rect key="frame" x="0.0" y="50" width="375" height="387.5"/>
+                                                    <rect key="frame" x="0.0" y="50" width="375" height="382.5"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EkX-gj-upT">
-                                                    <rect key="frame" x="10" y="447.5" width="30" height="30"/>
+                                                    <rect key="frame" x="15" y="442.5" width="35" height="35"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="6sv-dV-Gq4"/>
-                                                        <constraint firstAttribute="width" constant="30" id="Cds-sB-haZ"/>
+                                                        <constraint firstAttribute="height" constant="35" id="6sv-dV-Gq4"/>
+                                                        <constraint firstAttribute="width" constant="35" id="Cds-sB-haZ"/>
                                                     </constraints>
-                                                    <state key="normal" title="Button" image="likeButton"/>
+                                                    <state key="normal" title="unfavorited" image="likeButton"/>
+                                                    <state key="selected" title="favorited" image="LikeButtonSelected"/>
+                                                    <connections>
+                                                        <action selector="didTapLike:" destination="2RH-Up-IOn" eventType="touchUpInside" id="WiY-vG-I23"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ikv-Ow-YOF">
-                                                    <rect key="frame" x="50" y="447.5" width="30" height="30"/>
+                                                    <rect key="frame" x="65" y="442.5" width="35" height="35"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="3J2-r1-ebL"/>
-                                                        <constraint firstAttribute="height" constant="30" id="UHb-h1-euu"/>
+                                                        <constraint firstAttribute="width" constant="35" id="3J2-r1-ebL"/>
+                                                        <constraint firstAttribute="height" constant="35" id="UHb-h1-euu"/>
                                                     </constraints>
                                                     <state key="normal" title="Button" image="commentButton"/>
                                                 </button>
@@ -313,11 +317,11 @@
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="chV-1K-Y7y" secondAttribute="trailing" constant="10" id="4B6-ht-AUb"/>
                                                 <constraint firstItem="Ikv-Ow-YOF" firstAttribute="top" secondItem="0vj-dv-wlw" secondAttribute="bottom" constant="10" id="763-b3-Lr6"/>
                                                 <constraint firstItem="ZAH-Qd-brS" firstAttribute="leading" secondItem="4Od-1B-cb7" secondAttribute="trailing" constant="10" id="82T-5r-nDT"/>
-                                                <constraint firstItem="Ikv-Ow-YOF" firstAttribute="leading" secondItem="EkX-gj-upT" secondAttribute="trailing" constant="10" id="95A-HX-xGw"/>
+                                                <constraint firstItem="Ikv-Ow-YOF" firstAttribute="leading" secondItem="EkX-gj-upT" secondAttribute="trailing" constant="15" id="95A-HX-xGw"/>
                                                 <constraint firstItem="PuN-vz-CfZ" firstAttribute="leading" secondItem="DYg-68-WYz" secondAttribute="leading" id="9Bw-tZ-kDe"/>
                                                 <constraint firstItem="rBB-EK-ewJ" firstAttribute="leading" secondItem="PuN-vz-CfZ" secondAttribute="leading" id="A89-qP-MnY"/>
                                                 <constraint firstItem="DYg-68-WYz" firstAttribute="top" secondItem="EkX-gj-upT" secondAttribute="bottom" constant="5" id="Bpz-Ss-bVl"/>
-                                                <constraint firstItem="EkX-gj-upT" firstAttribute="leading" secondItem="uKC-3Y-zjK" secondAttribute="leading" constant="10" id="EVx-dq-5tI"/>
+                                                <constraint firstItem="EkX-gj-upT" firstAttribute="leading" secondItem="uKC-3Y-zjK" secondAttribute="leading" constant="15" id="EVx-dq-5tI"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="rBB-EK-ewJ" secondAttribute="trailing" constant="10" id="Evh-uu-M6Q"/>
                                                 <constraint firstItem="0vj-dv-wlw" firstAttribute="leading" secondItem="uKC-3Y-zjK" secondAttribute="leading" id="G5l-en-8YA"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="PuN-vz-CfZ" secondAttribute="trailing" constant="10" id="Htv-S4-7LP"/>
@@ -682,6 +686,7 @@
     </scenes>
     <resources>
         <image name="Instagram_icon" width="3091" height="3086"/>
+        <image name="LikeButtonSelected" width="700" height="700"/>
         <image name="commentButton" width="700" height="700"/>
         <image name="feed_tab" width="25" height="25"/>
         <image name="image_placeholder" width="375" height="375"/>
@@ -691,7 +696,7 @@
         <image name="profile_tab" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YuL-eh-7Fl"/>
+        <segue reference="CP7-l7-FTP"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.54498195997122445" green="0.79056376454477228" blue="0.92316386421319796" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>
