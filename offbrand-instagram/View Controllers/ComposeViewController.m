@@ -21,20 +21,21 @@
 
 @implementation ComposeViewController
 
-static NSString *const textViewPlaceholderText = @"Write a description for your photo!";
+static NSString *const PHOTO_DESCRIPTION_PLACEHOLDER = @"Write a description for your photo!";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupComposeViewController];
+}
+
+- (void)setupComposeViewController {
     self.textView.delegate = self;
-    self.textView.placeholder = textViewPlaceholderText;
+    self.textView.placeholder = PHOTO_DESCRIPTION_PLACEHOLDER;
     self.textView.placeholderColor = [UIColor lightGrayColor];
-    
-    // Do any additional setup after loading the view.
 }
 
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    
     resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
     resizeImageView.image = image;
     
@@ -47,18 +48,12 @@ static NSString *const textViewPlaceholderText = @"Write a description for your 
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    
-    // Get the image captured by the UIImagePickerController
     self.originalImage = info[UIImagePickerControllerOriginalImage];
     self.editedImage = [self resizeImage:self.originalImage withSize:CGSizeMake(1000, 1000)];
-    
-    // Do something with the images (based on your use case)
     [self.postImage setImage:self.editedImage];
     
-    // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 - (IBAction)didTapPostImage:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
@@ -67,12 +62,9 @@ static NSString *const textViewPlaceholderText = @"Write a description for your 
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else {
-        NSLog(@"Camera 🚫 available so we will use photo library instead");
+    } else {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
-    
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 

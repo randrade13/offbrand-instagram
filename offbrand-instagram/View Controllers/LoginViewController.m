@@ -10,6 +10,7 @@
 #import "Parse.h"
 
 @interface LoginViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
@@ -19,24 +20,25 @@
 
 @implementation LoginViewController
 
+static NSString *const UNSUCCESSFUL_LOGIN_ALERT_TITLE = @"Login not succesful";
+static NSString *const UNSUCCESSFUL_LOGIN_ALERT_MESSAGE = @"Please try to login in again.";
+static NSString *const OK_ACTION_TITLE = @"OK";
+
+static NSString *const TIMELINE_SEGUE_ID = @"timelineSegue";
+static NSString *const SIGNUP_SEGUE_ID = @"signUpSegue";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)loginUser {
-    // Create signup succesful alert
-    UIAlertController *loginNotSuccessfulAlert = [UIAlertController alertControllerWithTitle:@"Login not succesful"
-                                                                                message:@"Please try to login in again."
+    UIAlertController *loginNotSuccessfulAlert = [UIAlertController alertControllerWithTitle:UNSUCCESSFUL_LOGIN_ALERT_TITLE
+                                                                                message:UNSUCCESSFUL_LOGIN_ALERT_MESSAGE
                                                                          preferredStyle:(UIAlertControllerStyleAlert)];
-    
-    // create an OK action
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:OK_ACTION_TITLE
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction * _Nonnull action) {
-                                                         // handle response here.
                                                      }];
-    // add the OK action to the alert controller
     [loginNotSuccessfulAlert addAction:okAction];
     
     NSString *username = self.usernameField.text;
@@ -46,7 +48,7 @@
         if (error != nil) {
             [self presentViewController:loginNotSuccessfulAlert animated:YES completion:nil];
         } else {
-            [self performSegueWithIdentifier:@"timelineSegue" sender:nil];
+            [self performSegueWithIdentifier:TIMELINE_SEGUE_ID sender:nil];
         }
     }];
 }
@@ -54,13 +56,14 @@
 - (IBAction)didTapLogin:(id)sender {
     [self loginUser];
 }
+
 - (IBAction)didTapSignUp:(id)sender {
-    [self performSegueWithIdentifier:@"signUpSegue" sender:nil];
+    [self performSegueWithIdentifier:SIGNUP_SEGUE_ID sender:nil];
 }
+
 - (IBAction)didTapLoginView:(id)sender {
     [self.view endEditing:YES];
 }
-
 
 /*
 #pragma mark - Navigation

@@ -24,63 +24,63 @@
 
 @implementation postAuthorProfileViewController
 
+static NSString *const POST_DATE_CREATED_KEY = @"createdAt";
+static NSString *const POST_AUTHOR_KEY = @"author";
+static NSString *const POST_AUTHOR_PROF_PIC_KEY = @"profileImage";
+
+static NSString *const POST_COLLECTION_CELL_ID = @"instaCollectionCell";
+static NSString *const POST_DETAILS_SEGUE_ID = @"postDetailSegue";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self loadUserProfilePicture];
-    
+    [self setupPostAuthorView];
+    [self setupCollectionView];
+    [self refreshData];
+}
+-(void)setupPostAuthorView{
     NSString *userName = self.selectedProfile.username;
     self.userProfileName.text = userName;
+}
+
+-(void)setupCollectionView{
+    self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
     
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
-    
     layout.minimumInteritemSpacing = 3;
     layout.minimumLineSpacing = 3;
     CGFloat postersPerLine = 3;
     CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing * (postersPerLine - 1)) / postersPerLine;
     CGFloat itemHeight = itemWidth;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
-    
-    self.collectionView.dataSource = self;
-    self.collectionView.delegate = self;
-    
-    [self refreshData];
-    // Do any additional setup after loading the view.
 }
 
 -(void)loadUserProfilePicture{
-    PFFileObject *PFObjectProfileImage = self.selectedProfile[@"profileImage"];
-    
+    PFFileObject *PFObjectProfileImage = self.selectedProfile[POST_AUTHOR_PROF_PIC_KEY];
     NSURL *profileImageURL = [NSURL URLWithString:PFObjectProfileImage.url];
     self.userProfilePicture.image = nil;
     [self.userProfilePicture setImageWithURL:profileImageURL];
 }
 
 -(void)refreshData{
-    
-    // construct PFQuery
     PFQuery *postQuery = [Post query];
-    [postQuery orderByDescending:@"createdAt"];
-    [postQuery whereKey:@"author" equalTo:self.selectedProfile];
-    [postQuery includeKey:@"author"];
+    [postQuery orderByDescending:POST_DATE_CREATED_KEY];
+    [postQuery whereKey:POST_AUTHOR_KEY equalTo:self.selectedProfile];
+    [postQuery includeKey:POST_AUTHOR_KEY];
     postQuery.limit = 20;
     
-    // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
             self.userPostArray = posts;
             [self.collectionView reloadData];
-            // do something with the data fetched
-        }
-        else {
-            // handle error
         }
     }];
 }
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    instaCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"instaCollectionCell" forIndexPath:indexPath];
-    
+    instaCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:POST_COLLECTION_CELL_ID forIndexPath:indexPath];
     Post *post = self.userPostArray[indexPath.row];
     cell.post = post;
     
@@ -97,22 +97,15 @@
 }
 
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    
-    if ([segue.identifier  isEqual: @"postDetailSegue"]){
-        
+    if ([segue.identifier  isEqual: POST_DETAILS_SEGUE_ID]){
         UICollectionViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
-        Post *post = self.userPostArray[indexPath.row];
         
+        Post *post = self.userPostArray[indexPath.row];
         postDetailsViewController *postDetailsViewController = [segue destinationViewController];
         postDetailsViewController.post = post;
     }
 }
-
 
 @end

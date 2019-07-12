@@ -21,14 +21,12 @@
 }
 
 - (void)setupDetailsViewWithPost{
-    
     self.authorUserName.text = self.post.author.username;
     self.postText.text = self.post.caption;
     self.numberOfLikes.text = [NSString stringWithFormat:@"%@", self.post.likeCount];
     
     NSString *formatted_date = self.post.createdAt.timeAgoSinceNow;
     self.datePosted.text = formatted_date;
-    
 }
 /*
 #pragma mark - Navigation

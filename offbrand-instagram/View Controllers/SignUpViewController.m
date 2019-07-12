@@ -11,6 +11,7 @@
 #import "Post.h"
 
 @interface SignUpViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
@@ -21,61 +22,50 @@
 
 @implementation SignUpViewController
 
+static NSString *const SUCCESSFUL_SIGNUP_ALERT_TITLE = @"Signup Successful";
+static NSString *const SUCCESSFUL_SIGNUP_ALERT_MESSAGE = @"Please login with your new account.";
+static NSString *const UNSUCCESSFUL_SIGNUP_ALERT_TITLE = @"Signup not successful";
+static NSString *const UNSUCCESSFUL_SIGNUP_ALERT_MESSAGE = @"Please try signing up again.";
+static NSString *const OK_ACTION_TITLE = @"OK";
+
+static NSString *const USER_PROF_IMG_KEY = @"profileImage";
+static NSString *const DEFAULT_PROF_IMG_FILENAME = @"image_placeholder.png";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)registerUser {
-    // Create signup succesful alert
-    UIAlertController *signUpSuccessAlert = [UIAlertController alertControllerWithTitle:@"Signup Successful"
-                                                                   message:@"Please login with your new account."
+    UIAlertController *signUpSuccessAlert = [UIAlertController alertControllerWithTitle:SUCCESSFUL_SIGNUP_ALERT_TITLE
+                                                                   message:SUCCESSFUL_SIGNUP_ALERT_MESSAGE
                                                             preferredStyle:(UIAlertControllerStyleAlert)];
-    
-    // create an OK action
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:OK_ACTION_TITLE
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction * _Nonnull action) {
-                                                         // handle response here.
                                                      }];
-    // add the OK action to the alert controller
     [signUpSuccessAlert addAction:okAction];
     
-    // Create unssuccessful signup alert
-    UIAlertController *signUpNotSuccessfulAlert = [UIAlertController alertControllerWithTitle:@"Signup not successful"
-                                                                                message:@"Please try signing up again."
+    UIAlertController *signUpNotSuccessfulAlert = [UIAlertController alertControllerWithTitle:UNSUCCESSFUL_SIGNUP_ALERT_TITLE
+                                                                                message:UNSUCCESSFUL_SIGNUP_ALERT_MESSAGE
                                                                          preferredStyle:(UIAlertControllerStyleAlert)];
-    // add the OK action to the alert controller
     [signUpNotSuccessfulAlert addAction:okAction];
     
-    // initialize a user object
     PFUser *newUser = [PFUser user];
-    
-    // set user properties
     newUser.username = self.usernameField.text;
     newUser.email = self.emailField.text;
     newUser.password = self.passwordField.text;
-    newUser[@"profileImage"] = [Post getPFFileFromImage: [UIImage imageNamed:@"image_placeholder.png"]];
+    newUser[USER_PROF_IMG_KEY] = [Post getPFFileFromImage: [UIImage imageNamed:DEFAULT_PROF_IMG_FILENAME]];
     
-    // call sign up function on the object
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
-            NSLog(@"Error: %@", error.localizedDescription);
-            
-            // present signUpNotSuccessfulAlert
             [self presentViewController:signUpNotSuccessfulAlert animated:YES completion:nil];
-            
         } else {
-            NSLog(@"User registered successfully");
-            
-            // present signUpSuccessAlert
             [self presentViewController:signUpSuccessAlert animated:YES completion:nil];
-
         };
     }];
 }
+
 - (IBAction)didTapSignUp:(id)sender {
-    // register user with current text field info
     [self registerUser];
 }
 
@@ -84,14 +74,12 @@
 }
 
 - (IBAction)didTapSignUpView:(id)sender {
-    // Close keyboard
     [self.view endEditing:YES];
 }
 
 /*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

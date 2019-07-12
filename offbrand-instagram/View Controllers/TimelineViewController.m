@@ -29,36 +29,44 @@
 
 @implementation TimelineViewController
 
+static NSString *const POST_DATE_CREATED_KEY = @"createdAt";
+static NSString *const POST_AUTHOR_KEY = @"author";
+static NSString *const POST_AUTHOR_PROF_PIC_ID = @"profileImage";
+
+static NSString *const MAIN_STORYBD_ID = @"Main";
+static NSString *const LOGIN_VIEW_CONTROLLER_ID = @"LoginViewController";
+
+static NSString *const INSTA_POST_CELL_ID = @"instaPostCell";
+
+static NSString *const POST_AUTHOR_PROF_SEGUE_ID = @"postUserProfileSegue";
+static NSString *const POST_DETAILS_SEGUE_ID = @"postDetailSegue";
+static NSString *const COMPOSE_POST_SEGUE_ID = @"composeSegue";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    [self setupRefreshControl];
+    [self refreshData];
+}
+
+-(void)setupRefreshControl{
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
-    
-    [self refreshData];
-    
 }
+
 -(void)refreshData{
-    
-    // construct PFQuery
     PFQuery *postQuery = [Post query];
-    [postQuery orderByDescending:@"createdAt"];
-    [postQuery includeKey:@"author"];
+    [postQuery orderByDescending:POST_DATE_CREATED_KEY];
+    [postQuery includeKey:POST_AUTHOR_KEY];
     postQuery.limit = 20;
     
-    // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
             self.postArray = posts;
             [self.tableView reloadData];
-            // do something with the data fetched
-        }
-        else {
-            // handle error
         }
         [self.refreshControl endRefreshing];
     }];
@@ -66,15 +74,10 @@
 
 - (IBAction)didTapSignOut:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        // PFUser.current() will now be nil
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        
-        LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:MAIN_STORYBD_ID bundle:nil];
+        LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:LOGIN_VIEW_CONTROLLER_ID];
         appDelegate.window.rootViewController = loginViewController;
-        
-        // NSLog(@"User logged out successfully");
     }];
 }
 
@@ -83,55 +86,44 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    instaPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"instaPostCell" forIndexPath:indexPath];
-    
+    instaPostCell *cell = [tableView dequeueReusableCellWithIdentifier:INSTA_POST_CELL_ID forIndexPath:indexPath];
     Post *post = self.postArray[indexPath.row];
+    
     cell.post = post;
-    
-    NSString *formatted_date = post.createdAt.shortTimeAgoSinceNow;
-    cell.datePosted.text = formatted_date;
-    
     cell.authorUserNameHeader.text = post.author.username;
     cell.authorUserNameBody.text = post.author.username;
     cell.numberOfLikes.text = [NSString stringWithFormat:@"%@", post.likeCount];
     cell.postText.text = post.caption;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    PFFileObject *authorProfilePicture = post.author[POST_AUTHOR_PROF_PIC_ID];
+    NSURL *authorProfilePictureURL = [NSURL URLWithString:authorProfilePicture.url];
+    cell.authorProfileImage.image = nil;
+    [cell.authorProfileImage setImageWithURL:authorProfilePictureURL];
+    [cell.authorProfileImage setUserInteractionEnabled:YES];
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didSelectUserProfileImage:)];
+    [cell.authorProfileImage addGestureRecognizer:singleTap];
+    
+    NSString *postImageAddress = post.image.url;
+    NSURL *postImageURL = [NSURL URLWithString:postImageAddress];
+    cell.postedImage.image = nil;
+    [cell.postedImage setImageWithURL:postImageURL];
+    
+    NSString *formattedDate = post.createdAt.shortTimeAgoSinceNow;
+    cell.datePosted.text = formattedDate;
     
     if ([cell.post.usersWhoLiked containsObject:[PFUser currentUser].objectId]){
         cell.likeButton.selected = YES;
     } else {
         cell.likeButton.selected = NO;
     }
-    
-    PFFileObject *authorProfilePicture = post.author[@"profileImage"];
-    NSURL *authorProfilePictureURL = [NSURL URLWithString:authorProfilePicture.url];
-    cell.authorProfileImage.image = nil;
-    [cell.authorProfileImage setImageWithURL:authorProfilePictureURL];
-    
-    
-    [cell.authorProfileImage setUserInteractionEnabled:YES];
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didSelectUserProfileImage:)];
-    [cell.authorProfileImage addGestureRecognizer:singleTap];
-    
-    NSString *postImageAddress = post.image.url;
-    // NSLog(@"%@", post_image_address);
-    NSURL *postImageURL = [NSURL URLWithString:postImageAddress];
-    cell.postedImage.image = nil;
-    [cell.postedImage setImageWithURL:postImageURL];
-    
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    // cell.authorProfileImage =
-    
     return cell;
 }
 
 - (void)didSelectUserProfileImage:(id)sender {
     CGPoint location = [sender locationInView:self.tableView];
     self.indexPath = [self.tableView indexPathForRowAtPoint:location];
-    [self performSegueWithIdentifier:@"postUserProfileSegue" sender:nil];
-    
+    [self performSegueWithIdentifier:POST_AUTHOR_PROF_SEGUE_ID sender:nil];
 }
 
 - (void)didPost{
@@ -139,32 +131,26 @@
 }
 
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
      UINavigationController *navigationController = [segue destinationViewController];
     
-    if ([segue.identifier  isEqual: @"postDetailSegue"]){
+    if ([segue.identifier  isEqual: POST_DETAILS_SEGUE_ID]){
         UITableViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
         Post *post = self.postArray[indexPath.row];
         postDetailsViewController *postDetailsViewController = [segue destinationViewController];
         postDetailsViewController.post = post;
         
-    } else if([segue.identifier  isEqual: @"composeSegue"]){
+    } else if([segue.identifier  isEqual: COMPOSE_POST_SEGUE_ID]){
         ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
         composeController.delegate = self;
         
-    } else if([segue.identifier isEqual:@"postUserProfileSegue"]){
+    } else if([segue.identifier isEqual:POST_AUTHOR_PROF_SEGUE_ID]){
         Post *post = self.postArray[self.indexPath.row];
         PFUser *postAuthor = post.author;
-        //NSLog(@"Post Author: %@", postAuthor);
-        
         postAuthorProfileViewController *authorProfile = [segue destinationViewController];
         authorProfile.selectedProfile = postAuthor;
     }
 }
-
 
 @end
