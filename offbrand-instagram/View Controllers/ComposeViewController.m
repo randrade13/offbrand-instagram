@@ -50,7 +50,7 @@ static NSString *const textViewPlaceholderText = @"Write a description for your 
     
     // Get the image captured by the UIImagePickerController
     self.originalImage = info[UIImagePickerControllerOriginalImage];
-    self.editedImage = [self resizeImage:self.originalImage withSize:CGSizeMake(400, 400)];
+    self.editedImage = [self resizeImage:self.originalImage withSize:CGSizeMake(1000, 1000)];
     
     // Do something with the images (based on your use case)
     [self.postImage setImage:self.editedImage];

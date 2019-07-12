@@ -308,7 +308,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZAH-Qd-brS">
-                                                    <rect key="frame" x="60" y="22.5" width="111" height="15"/>
+                                                    <rect key="frame" x="60" y="22.5" width="305" height="15"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -339,7 +339,7 @@
                                                 <constraint firstItem="ZAH-Qd-brS" firstAttribute="centerY" secondItem="4Od-1B-cb7" secondAttribute="centerY" id="gaG-Jh-ecJ"/>
                                                 <constraint firstItem="4Od-1B-cb7" firstAttribute="top" secondItem="uKC-3Y-zjK" secondAttribute="top" constant="10" id="iBQ-Be-Tjt"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="lFh-MK-DrY" secondAttribute="trailing" constant="10" id="k0e-0J-tfS"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZAH-Qd-brS" secondAttribute="trailing" constant="10" id="kxw-96-yg6"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZAH-Qd-brS" secondAttribute="trailing" constant="10" id="kxw-96-yg6"/>
                                                 <constraint firstItem="0vj-dv-wlw" firstAttribute="top" secondItem="4Od-1B-cb7" secondAttribute="bottom" constant="10" id="oxX-U1-cIC"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ikv-Ow-YOF" secondAttribute="trailing" constant="10" id="ps7-CY-Bqc"/>
                                                 <constraint firstAttribute="trailing" secondItem="0vj-dv-wlw" secondAttribute="trailing" id="zZq-f4-FBB"/>
@@ -798,7 +798,7 @@
         <image name="profile_tab" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hZJ-VI-aqp"/>
+        <segue reference="NFW-dE-AdN"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.54498195997122445" green="0.79056376454477228" blue="0.92316386421319796" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

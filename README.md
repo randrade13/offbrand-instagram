@@ -38,6 +38,7 @@ The following **additional** features are implemented:
 
 - [X] New users who signup get default profile picture
 - [X] UI Alerts presented upon invalid login/SignUp
+- [X] Auto-layout configured for all views
 
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):

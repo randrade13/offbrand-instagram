@@ -23,6 +23,7 @@
 @property NSArray *postArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NSIndexPath *indexPath;
 
 @end
 
@@ -81,10 +82,6 @@
     return self.postArray.count;
 }
 
-- (void)didSelectProfilePicture:(id)sender {
-    [self performSegueWithIdentifier:@"postUserProfileSegue" sender:nil];
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     instaPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"instaPostCell" forIndexPath:indexPath];
@@ -113,7 +110,7 @@
     
     
     [cell.authorProfileImage setUserInteractionEnabled:YES];
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didSelectProfilePicture:)];
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didSelectUserProfileImage:)];
     [cell.authorProfileImage addGestureRecognizer:singleTap];
     
     NSString *postImageAddress = post.image.url;
@@ -128,6 +125,13 @@
     // cell.authorProfileImage =
     
     return cell;
+}
+
+- (void)didSelectUserProfileImage:(id)sender {
+    CGPoint location = [sender locationInView:self.tableView];
+    self.indexPath = [self.tableView indexPathForRowAtPoint:location];
+    [self performSegueWithIdentifier:@"postUserProfileSegue" sender:nil];
+    
 }
 
 - (void)didPost{
@@ -153,9 +157,7 @@
         composeController.delegate = self;
         
     } else if([segue.identifier isEqual:@"postUserProfileSegue"]){
-        NSArray *indexArray = self.tableView.indexPathsForVisibleRows;
-        NSIndexPath *indexPath = indexArray[0];
-        Post *post = self.postArray[indexPath.row];
+        Post *post = self.postArray[self.indexPath.row];
         PFUser *postAuthor = post.author;
         //NSLog(@"Post Author: %@", postAuthor);
         
