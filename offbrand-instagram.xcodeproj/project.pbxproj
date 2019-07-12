@@ -10,6 +10,7 @@
 		4A944D2F22D6AB490065782C /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A944D2E22D6AB490065782C /* ProfileViewController.m */; };
 		4A944D3222D6AB850065782C /* instaCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A944D3122D6AB850065782C /* instaCollectionCell.m */; };
 		4A944D3522D7F1D90065782C /* postAuthorProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A944D3422D7F1D90065782C /* postAuthorProfileViewController.m */; };
+		4A944D3822D864760065782C /* CustomCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A944D3722D864760065782C /* CustomCameraViewController.m */; };
 		4AFA927522D3F70100092432 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFA927422D3F70100092432 /* AppDelegate.m */; };
 		4AFA927B22D3F70100092432 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AFA927922D3F70100092432 /* Main.storyboard */; };
 		4AFA927D22D3F70200092432 /* likeButoonSelected.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AFA927C22D3F70200092432 /* likeButoonSelected.xcassets */; };
@@ -54,6 +55,8 @@
 		4A944D3122D6AB850065782C /* instaCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = instaCollectionCell.m; sourceTree = "<group>"; };
 		4A944D3322D7F1D90065782C /* postAuthorProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = postAuthorProfileViewController.h; sourceTree = "<group>"; };
 		4A944D3422D7F1D90065782C /* postAuthorProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = postAuthorProfileViewController.m; sourceTree = "<group>"; };
+		4A944D3622D864760065782C /* CustomCameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCameraViewController.h; sourceTree = "<group>"; };
+		4A944D3722D864760065782C /* CustomCameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCameraViewController.m; sourceTree = "<group>"; };
 		4AFA927022D3F70100092432 /* offbrand-instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "offbrand-instagram.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AFA927322D3F70100092432 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4AFA927422D3F70100092432 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -195,6 +198,8 @@
 				4A944D2E22D6AB490065782C /* ProfileViewController.m */,
 				4A944D3322D7F1D90065782C /* postAuthorProfileViewController.h */,
 				4A944D3422D7F1D90065782C /* postAuthorProfileViewController.m */,
+				4A944D3622D864760065782C /* CustomCameraViewController.h */,
+				4A944D3722D864760065782C /* CustomCameraViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -474,6 +479,7 @@
 				4AFA92AA22D4085100092432 /* LoginViewController.m in Sources */,
 				4AFA92B022D410AB00092432 /* TimelineViewController.m in Sources */,
 				4AFA92B922D53CE900092432 /* Post.m in Sources */,
+				4A944D3822D864760065782C /* CustomCameraViewController.m in Sources */,
 				4AFA92BC22D555DE00092432 /* instaPostCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,6 +1,6 @@
-# Project 4 - *Name of App Here*
+# Project 4 - *Off-brand Instagram - Rodrigo Andrade*
 
-**Name of your app** is a photo sharing app using Parse as its backend.
+**Off-brand Instagram** is a photo sharing app using Parse as its backend.
 
 Time spent: **18-20** hours spent in total
 
@@ -32,7 +32,7 @@ The following **optional** features are implemented:
 - [ ] User can comment on a post and see all comments for each post in the post details screen.
 - [X] User can like a post and see number of likes for each post in the post details 
 screen.
-- [ ] Implement a custom camera view.
+- [X] Implement a custom camera view.
 
 The following **additional** features are implemented:
 

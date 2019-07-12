@@ -224,7 +224,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="729" y="99"/>
+            <point key="canvasLocation" x="-55" y="807"/>
         </scene>
         <!--TimelineViewController-->
         <scene sceneID="72d-OX-JRp">
@@ -390,7 +390,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLI-GL-gnn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1525.5999999999999" y="883.80809595202402"/>
+            <point key="canvasLocation" x="2289" y="99"/>
         </scene>
         <!--Post Author Profile View Controller-->
         <scene sceneID="krq-Ku-pjL">
@@ -466,7 +466,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aYg-hL-Tey" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2309.5999999999999" y="883.80809595202402"/>
+            <point key="canvasLocation" x="3097" y="-21"/>
         </scene>
         <!--Compose View Controller-->
         <scene sceneID="G5N-7D-VLD">
@@ -540,7 +540,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3111" y="99"/>
+            <point key="canvasLocation" x="3881" y="-681"/>
         </scene>
         <!--Feed-->
         <scene sceneID="fCz-9V-Fs1">
@@ -559,7 +559,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aY9-hu-oCb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="729" y="884"/>
+            <point key="canvasLocation" x="1505" y="99"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="bLj-J7-EoB">
@@ -648,7 +648,83 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lc2-dT-zKU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1448.8" y="1654.7226386806599"/>
+            <point key="canvasLocation" x="2289" y="806"/>
+        </scene>
+        <!--CustomCameraViewController-->
+        <scene sceneID="5IC-n6-8W9">
+            <objects>
+                <viewController storyboardIdentifier="CustomCameraViewController" title="CustomCameraViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6RF-lY-Vja" customClass="CustomCameraViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pgt-aG-9hP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="RdI-sO-IzR">
+                                <rect key="frame" x="0.0" y="20" width="375" height="517"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="Captured Image" translatesAutoresizingMaskIntoConstraints="NO" id="A00-rr-ryu">
+                                <rect key="frame" x="250" y="547" width="110" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="WOw-lK-7IV"/>
+                                    <constraint firstAttribute="height" constant="110" id="uaY-qE-Msx"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDR-ob-ILf">
+                                <rect key="frame" x="15" y="547" width="110" height="110"/>
+                                <color key="backgroundColor" red="0.52166950929739209" green="0.90590792894363403" blue="0.66001307924259434" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="kTT-zK-E1o"/>
+                                    <constraint firstAttribute="height" constant="110" id="t7A-GD-HSe"/>
+                                </constraints>
+                                <state key="normal" title="Select Image">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didSelectImage:" destination="6RF-lY-Vja" eventType="touchUpInside" id="M1B-Jn-A0y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0A-og-TJS">
+                                <rect key="frame" x="132.5" y="547" width="110" height="110"/>
+                                <color key="backgroundColor" red="0.54342138767242432" green="0.78147423267364502" blue="0.90590792894363403" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="kGy-SK-Wbb"/>
+                                    <constraint firstAttribute="height" constant="110" id="nSV-BS-Ubq"/>
+                                </constraints>
+                                <state key="normal" title="Take Photo">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTakePhoto:" destination="6RF-lY-Vja" eventType="touchUpInside" id="xGf-O5-fXZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="A00-rr-ryu" firstAttribute="bottom" secondItem="J0A-og-TJS" secondAttribute="bottom" id="FoR-AO-NLA"/>
+                            <constraint firstItem="1YT-iE-EH1" firstAttribute="bottom" secondItem="UDR-ob-ILf" secondAttribute="bottom" constant="10" id="GTR-fg-swk"/>
+                            <constraint firstItem="A00-rr-ryu" firstAttribute="leading" secondItem="J0A-og-TJS" secondAttribute="trailing" constant="7.5" id="Hks-tS-dBP"/>
+                            <constraint firstItem="RdI-sO-IzR" firstAttribute="top" secondItem="1YT-iE-EH1" secondAttribute="top" id="MHX-Px-ojP"/>
+                            <constraint firstItem="RdI-sO-IzR" firstAttribute="trailing" secondItem="1YT-iE-EH1" secondAttribute="trailing" id="PVN-Jx-hZm"/>
+                            <constraint firstItem="UDR-ob-ILf" firstAttribute="leading" secondItem="1YT-iE-EH1" secondAttribute="leading" constant="15" id="SWv-eU-4TG"/>
+                            <constraint firstItem="RdI-sO-IzR" firstAttribute="leading" secondItem="1YT-iE-EH1" secondAttribute="leading" id="VDm-lv-cDx"/>
+                            <constraint firstItem="1YT-iE-EH1" firstAttribute="trailing" secondItem="A00-rr-ryu" secondAttribute="trailing" constant="15" id="Vnr-96-7q6"/>
+                            <constraint firstItem="J0A-og-TJS" firstAttribute="top" secondItem="UDR-ob-ILf" secondAttribute="top" id="cM7-4z-v6z"/>
+                            <constraint firstItem="J0A-og-TJS" firstAttribute="bottom" secondItem="UDR-ob-ILf" secondAttribute="bottom" id="e27-ZV-2iZ"/>
+                            <constraint firstItem="UDR-ob-ILf" firstAttribute="top" secondItem="RdI-sO-IzR" secondAttribute="bottom" constant="10" id="etc-NY-pdt"/>
+                            <constraint firstItem="A00-rr-ryu" firstAttribute="top" secondItem="J0A-og-TJS" secondAttribute="top" id="hWm-cT-jk6"/>
+                            <constraint firstItem="J0A-og-TJS" firstAttribute="leading" secondItem="UDR-ob-ILf" secondAttribute="trailing" constant="7.5" id="uBs-w4-PUH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1YT-iE-EH1"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="wG3-t9-eL3"/>
+                    <connections>
+                        <outlet property="captureImageView" destination="A00-rr-ryu" id="dpg-XP-LdH"/>
+                        <outlet property="previewView" destination="RdI-sO-IzR" id="Era-ii-NCE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fd5-jB-L5h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3881" y="-21"/>
         </scene>
         <!--Post Details View Controller-->
         <scene sceneID="0a9-wz-oI6">
@@ -728,7 +804,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TDN-5x-pcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2228" y="1655"/>
+            <point key="canvasLocation" x="3097" y="689"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JBP-e3-R8l">
@@ -746,7 +822,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LZs-Ly-Y6f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2310" y="99"/>
+            <point key="canvasLocation" x="3097" y="-681"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="rkh-iC-Ied">
@@ -764,7 +840,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9xa-jO-Z5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-55.200000000000003" y="883.80809595202402"/>
+            <point key="canvasLocation" x="729" y="459"/>
         </scene>
         <!--Profile-->
         <scene sceneID="PgR-jE-YON">
@@ -783,7 +859,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gsE-1m-QRE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="729" y="1655"/>
+            <point key="canvasLocation" x="1505" y="806"/>
         </scene>
     </scenes>
     <resources>
@@ -798,7 +874,7 @@
         <image name="profile_tab" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NFW-dE-AdN"/>
+        <segue reference="hZJ-VI-aqp"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.54498195997122445" green="0.79056376454477228" blue="0.92316386421319796" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

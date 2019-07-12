@@ -6,12 +6,13 @@
 //  Copyright © 2019 rodrigoandrade. All rights reserved.
 //
 
+#import "CustomCameraViewController.h"
 #import "ComposeViewController.h"
 #import "UITextView+Placeholder.h"
 #import "TimelineViewController.h"
 #import "MBProgressHUD.h"
 
-@interface ComposeViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
+@interface ComposeViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, CustomCameraViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *postImage;
 @property (strong, nonatomic) UIImage *originalImage;
@@ -55,17 +56,33 @@ static NSString *const PHOTO_DESCRIPTION_PLACEHOLDER = @"Write a description for
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+- (void)selectPhotoWithCustomCamera:(UIImage *)selectedImage{
+    [self dismissViewControllerAnimated:YES completion:^{
+        self.originalImage = selectedImage;
+        self.editedImage = [self resizeImage:self.originalImage withSize:CGSizeMake(1000, 1000)];
+        [self.postImage setImage:self.editedImage];
+    }];
+}
+
 - (IBAction)didTapPostImage:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+        // imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+        // [self presentViewController:imagePickerVC animated:YES completion:nil];
+        CustomCameraViewController *customCameraView = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomCameraViewController"];
+        customCameraView.delegate = self;
+        [self presentViewController:customCameraView animated:YES completion:nil];
+        
+        
     } else {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:imagePickerVC animated:YES completion:nil];
     }
-    [self presentViewController:imagePickerVC animated:YES completion:nil];
+
 }
 
 - (IBAction)didTapCancel:(id)sender {
