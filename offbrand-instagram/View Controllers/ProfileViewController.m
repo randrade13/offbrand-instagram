@@ -16,11 +16,11 @@
 
 @interface ProfileViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property NSArray *userPostArray;
 @property (weak, nonatomic) IBOutlet UILabel *userProfileName;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
 @property (strong, nonatomic) UIImage *originalImage;
 @property (strong, nonatomic) UIImage *editedImage;
+@property NSArray *userPostArray;
 
 @end
 
@@ -150,7 +150,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-
     
     if ([segue.identifier  isEqual: @"postDetailSegue"]){
         

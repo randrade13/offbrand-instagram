@@ -16,6 +16,7 @@
 #import "ComposeViewController.h"
 #import "postDetailsViewController.h"
 #import "DateTools.h"
+#import "postAuthorProfileViewController.h"
 
 @interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate>
 
@@ -80,13 +81,17 @@
     return self.postArray.count;
 }
 
+- (void)didSelectProfilePicture:(id)sender {
+    [self performSegueWithIdentifier:@"postUserProfileSegue" sender:nil];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     instaPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"instaPostCell" forIndexPath:indexPath];
     
     Post *post = self.postArray[indexPath.row];
     cell.post = post;
-
+    
     NSString *formatted_date = post.createdAt.shortTimeAgoSinceNow;
     cell.datePosted.text = formatted_date;
     
@@ -106,12 +111,17 @@
     cell.authorProfileImage.image = nil;
     [cell.authorProfileImage setImageWithURL:authorProfilePictureURL];
     
+    
+    [cell.authorProfileImage setUserInteractionEnabled:YES];
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didSelectProfilePicture:)];
+    [cell.authorProfileImage addGestureRecognizer:singleTap];
+    
     NSString *postImageAddress = post.image.url;
     // NSLog(@"%@", post_image_address);
     NSURL *postImageURL = [NSURL URLWithString:postImageAddress];
-    
     cell.postedImage.image = nil;
     [cell.postedImage setImageWithURL:postImageURL];
+    
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -135,15 +145,22 @@
         UITableViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
         Post *post = self.postArray[indexPath.row];
-        
         postDetailsViewController *postDetailsViewController = [segue destinationViewController];
         postDetailsViewController.post = post;
         
     } else if([segue.identifier  isEqual: @"composeSegue"]){
         ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
         composeController.delegate = self;
-    } else if([segue.identifier isEqual:@"postUserProfileSegue"]){
         
+    } else if([segue.identifier isEqual:@"postUserProfileSegue"]){
+        NSArray *indexArray = self.tableView.indexPathsForVisibleRows;
+        NSIndexPath *indexPath = indexArray[0];
+        Post *post = self.postArray[indexPath.row];
+        PFUser *postAuthor = post.author;
+        //NSLog(@"Post Author: %@", postAuthor);
+        
+        postAuthorProfileViewController *authorProfile = [segue destinationViewController];
+        authorProfile.selectedProfile = postAuthor;
     }
 }
 

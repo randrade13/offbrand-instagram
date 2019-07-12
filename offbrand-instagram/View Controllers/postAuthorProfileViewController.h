@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Parse.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface postAuthorProfileViewController : UIViewController
-
+@property (strong, nonatomic) PFUser *selectedProfile;
 @end
 
 NS_ASSUME_NONNULL_END
